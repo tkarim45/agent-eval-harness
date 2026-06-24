@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ageval"
+version = "0.1.0"
+description = "Agent eval harness — measure task success, tool-call accuracy, step efficiency, and cost for tool-using LLM agents."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+keywords = ["agent-evaluation", "llm-agents", "tool-use", "eval", "claude", "anthropic", "react-agent"]
+authors = [{ name = "Taimoor Karim" }]
+
+dependencies = ["pyyaml>=6.0"]
+
+[project.optional-dependencies]
+claude = ["anthropic>=0.40"]
+app = ["streamlit>=1.33"]
+dev = ["pytest>=8.0"]
+all = ["ageval[claude,app,dev]"]
+
+[project.scripts]
+ageval = "ageval.harness:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ageval"]

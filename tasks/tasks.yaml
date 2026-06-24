@@ -1,0 +1,87 @@
+# Benchmark: multi-step tool-use tasks with known answers + reference tool traces.
+# expected_tools is the optimal multiset of tool names; optimal_steps is the minimal
+# number of tool calls. answer_type drives answer normalization in the scorer.
+tasks:
+  - id: cost_01
+    prompt: "What is the total cost of 3 widgets and 2 gadgets?"
+    gold: "75.5"
+    answer_type: numeric
+    expected_tools: [catalog_lookup, catalog_lookup, calculator]
+    optimal_steps: 3
+
+  - id: cost_02
+    prompt: "What is the total cost of 4 sprockets and 5 cogs?"
+    gold: "46.5"
+    answer_type: numeric
+    expected_tools: [catalog_lookup, catalog_lookup, calculator]
+    optimal_steps: 3
+
+  - id: cost_03
+    prompt: "What is the total price of 2 flanges, 1 widget, and 3 sprockets?"
+    gold: "78.25"
+    answer_type: numeric
+    expected_tools: [catalog_lookup, catalog_lookup, catalog_lookup, calculator]
+    optimal_steps: 4
+
+  - id: mgr_01
+    prompt: "Who is Alice's manager?"
+    gold: "carol"
+    answer_type: text
+    expected_tools: [employee_lookup]
+    optimal_steps: 1
+
+  - id: mgr_02
+    prompt: "Who is Bob's manager?"
+    gold: "dan"
+    answer_type: text
+    expected_tools: [employee_lookup]
+    optimal_steps: 1
+
+  - id: hop_01
+    prompt: "What department is the manager of Alice in?"
+    gold: "Engineering"
+    answer_type: text
+    expected_tools: [employee_lookup, employee_lookup]
+    optimal_steps: 2
+
+  - id: hop_02
+    prompt: "What department is the manager of Bob in?"
+    gold: "Sales"
+    answer_type: text
+    expected_tools: [employee_lookup, employee_lookup]
+    optimal_steps: 2
+
+  - id: sal_01
+    prompt: "What is the salary of Carol?"
+    gold: "210000"
+    answer_type: numeric
+    expected_tools: [employee_lookup]
+    optimal_steps: 1
+
+  - id: stock_01
+    prompt: "Do we have enough stock to fulfill an order of 10 cogs?"
+    gold: "no"
+    answer_type: text
+    expected_tools: [catalog_lookup]
+    optimal_steps: 1
+
+  - id: stock_02
+    prompt: "Do we have enough stock to fulfill an order of 30 widgets?"
+    gold: "yes"
+    answer_type: text
+    expected_tools: [catalog_lookup]
+    optimal_steps: 1
+
+  - id: fact_01
+    prompt: "In what year was Acme Corp founded?"
+    gold: "1993"
+    answer_type: numeric
+    expected_tools: [search]
+    optimal_steps: 1
+
+  - id: fact_02
+    prompt: "In what year did the Zephyr product line launch?"
+    gold: "2018"
+    answer_type: numeric
+    expected_tools: [search]
+    optimal_steps: 1
