@@ -1,13 +1,13 @@
-# 🧪 Agent Eval Harness — *does my agent actually complete the task?*
+# 🧪 Agent Eval Harness: *does my agent actually complete the task?*
 
 > Everyone ships tool-using LLM agents; almost no one can **measure** them. This harness
 > runs a tool-calling agent over a benchmark of multi-step tasks with **known-correct
 > outcomes and reference tool traces**, and scores **task success, tool-call accuracy,
-> step efficiency, and cost per task** — the four things a team actually needs to know
+> step efficiency, and cost per task**, the four things a team actually needs to know
 > before trusting an agent in production.
 
 A final-answer-only metric hides *how* the agent got there. This harness grades the whole
-**trajectory**: every tool call, the step count vs. optimal, and the token cost — so a
+**trajectory**: every tool call, the step count vs. optimal, and the token cost, so a
 "correct" answer reached by 8 flailing steps and $0.40 scores differently from the same
 answer in 3 steps and $0.05.
 
@@ -18,8 +18,8 @@ answer in 3 steps and $0.05.
 | Metric | Question it answers |
 |---|---|
 | **Success rate** | did the agent produce the correct final answer? (numeric-tolerant / text-substring) |
-| **Tool-call accuracy** | did it call the right tools? — precision/recall/**F1** on the multiset vs. the reference trace |
-| **Step efficiency** | `optimal_steps / actual_steps`, capped at 1.0 — did it dawdle or loop? |
+| **Tool-call accuracy** | did it call the right tools?, precision/recall/**F1** on the multiset vs. the reference trace |
+| **Step efficiency** | `optimal_steps / actual_steps`, capped at 1.0, did it dawdle or loop? |
 | **Cost per task** | token cost in USD (per-model pricing) |
 
 ---
@@ -32,9 +32,9 @@ Three agents share one scorer. Run them against the same 12-task benchmark:
 |---|---|---|---|---|
 | **`heuristic`** (competent reference) | **1.00** | **1.00** | **1.00** | $0.00 |
 | **`naive`** (guesses arithmetic, truncates multi-hop, redundant calls) | **0.58** | **0.59** | **0.75** | $0.00 |
-| **`claude`** (real tool-calling agent) | *run it* | — | — | *measured* |
+| **`claude`** (real tool-calling agent) | *run it* |, |, | *measured* |
 
-The `naive` agent is deliberately flawed — that the harness scores it *well below* the
+The `naive` agent is deliberately flawed, that the harness scores it *well below* the
 competent one is the point: **a good eval separates agents, it doesn't just rubber-stamp them.**
 
 ```
@@ -73,7 +73,7 @@ fully offline.
 
 ## Quickstart
 
-> Uses the conda **`personal`** env (per environment conventions — never `base`).
+> Uses the conda **`personal`** env (per environment conventions, never `base`).
 
 ```bash
 PY=~/miniconda3/envs/personal/bin/python
@@ -95,13 +95,13 @@ Each run writes `reports/report_<agent>.json` (summary + per-task scores + full 
 
 ## The benchmark
 
-`tasks/tasks.yaml` — 12 tasks across families that exercise multi-step tool use:
+`tasks/tasks.yaml`, 12 tasks across families that exercise multi-step tool use:
 
-- **catalog arithmetic** — "total cost of 3 widgets and 2 gadgets?" (lookup × N → calculator)
-- **directory lookup** — "who is Alice's manager?"
-- **multi-hop** — "what department is the manager of Alice in?" (lookup → lookup)
-- **stock sufficiency** — "enough stock for 10 cogs?"
-- **fact retrieval** — "what year was Acme founded?" (search)
+- **catalog arithmetic**, "total cost of 3 widgets and 2 gadgets?" (lookup × N → calculator)
+- **directory lookup**, "who is Alice's manager?"
+- **multi-hop**, "what department is the manager of Alice in?" (lookup → lookup)
+- **stock sufficiency**, "enough stock for 10 cogs?"
+- **fact retrieval**, "what year was Acme founded?" (search)
 
 Each task declares `gold`, `expected_tools` (the optimal multiset), and `optimal_steps`.
 Add your own tasks/tools to evaluate a real agent on your domain.
@@ -130,7 +130,7 @@ agent-eval-harness/
 
 > *Built an agent-evaluation harness measuring task success, tool-call accuracy (trace F1),
 > step efficiency, and cost-per-task for tool-using LLM agents (Anthropic Claude); benchmark
-> of multi-step tasks with reference traces, and a Streamlit trajectory inspector — the
+> of multi-step tasks with reference traces, and a Streamlit trajectory inspector, the
 > harness separates a competent agent (100% success) from a flawed one (58%) on the same suite.*
 
 ## License
