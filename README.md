@@ -79,12 +79,12 @@ fully offline.
 PY=~/miniconda3/envs/personal/bin/python
 $PY -m pip install -e ".[all]"
 
-# offline — no API key
+# offline, no API key
 ageval --agent heuristic        # competent reference agent
 ageval --agent naive            # flawed baseline (watch the scores drop)
 $PY -m streamlit run app/viewer.py   # per-task pass/fail + trajectory inspector
 
-# real eval — needs a key
+# real eval, needs a key
 export ANTHROPIC_API_KEY=sk-ant-...
 ageval --agent claude
 ```
