@@ -13,6 +13,13 @@ answer in 3 steps and $0.05.
 
 ---
 
+
+## Architecture
+
+![architecture](docs/assets/architecture.png)
+
+*Interactive/exportable version: [`docs/assets/architecture.html`](docs/assets/architecture.html).*
+
 ## What it measures
 
 | Metric | Question it answers |
